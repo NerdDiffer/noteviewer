@@ -2,7 +2,8 @@ const path = require('path');
 
 const PATHS = {
   SRC: path.join(__dirname, 'src'),
-  BUILD: path.join(__dirname, 'build'),
+  PUBLIC: path.join(__dirname, 'public'),
+  BUILD: path.join(__dirname, 'public/build')
 };
 
 module.exports = {
@@ -12,7 +13,7 @@ module.exports = {
   ],
   output: {
     path: PATHS.BUILD,
-    publicPath: '/',
+    publicPath: 'build',
     filename: 'bundle.js'
   },
   resolve: {
@@ -35,6 +36,6 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: PATHS.BUILD
+    contentBase: PATHS.PUBLIC
   }
 };
