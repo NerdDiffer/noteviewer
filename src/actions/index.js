@@ -17,9 +17,9 @@ export const changeChordType = chordType => {
   };
 };
 
-export const getNotes = (type, tonic) => {
+export const getNotes = (chordType, chordTonic) => {
   return {
     type: CHORD_NOTES,
-    payload: chord(type, tonic)
+    payload: chord(chordType, chordTonic)
   };
 };
