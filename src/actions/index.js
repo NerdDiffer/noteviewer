@@ -1,4 +1,5 @@
-import chord from 'tonal-chord';
+// https://github.com/danigb/tonal/blob/master/modules/chord/index.js
+import { build as chord } from 'tonal-chord';
 
 import { CHORD_TONIC, CHORD_TYPE, CHORD_NOTES } from './types';
 
@@ -9,7 +10,7 @@ export const changeChordTonic = chordTonic => {
   };
 };
 
-export const changeChordType = (chordType) => {
+export const changeChordType = chordType => {
   return {
     type: CHORD_TYPE,
     payload: chordType
