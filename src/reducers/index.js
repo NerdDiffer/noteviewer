@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import chord from './chord'
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  chord
 });
 
 export default rootReducer;
