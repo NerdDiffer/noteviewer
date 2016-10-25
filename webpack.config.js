@@ -31,7 +31,12 @@ module.exports = {
           presets: ['react', 'es2015', 'stage-1'],
           cacheDirectory: true
         }
-      }
+      },
+      {
+        loader: 'json',
+        include: /node_modules\/tonal-chord/,
+        test: /\.json$/
+      },
     ]
   },
   devServer: {
