@@ -17,6 +17,7 @@
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
+    "redux-devtools-extension": "^1.0.0",
     "tonal": "^0.50.3",
     "tonal-chord": "^0.50.2",
     "tonal-fretboard": "0.0.1"
