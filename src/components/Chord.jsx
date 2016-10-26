@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeChordTonic, changeChordType, getNotes } from '../actions';
 import ChordForm from './ChordForm';
+import Fretboard from './Fretboard';
+import areArraysEqual from '../utils/compareArrays';
 
 class Chord extends Component {
   constructor(props) {
@@ -14,16 +16,16 @@ class Chord extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const currType = this.props.type;
-    const currTonic = this.props.tonic;
-    const nextType = nextProps.type;
-    const nextTonic = nextProps.tonic;
-
-    console.log('currType %s', currType);
-    console.log('currTonic %s', currTonic);
+    // trying to update 1 piece of state, at most, per render
+    const { type: currType, tonic: currTonic, notes: currNotes } = this.props.chord;
+    const { type: nextType, tonic: nextTonic, notes: nextNotes } = nextProps.chord;
 
     if (currType !== nextType || currTonic !== nextTonic) {
       this.handleNotesChange({ type: nextType, tonic: nextTonic });
+    } else if (!areArraysEqual(currNotes, nextNotes)) {
+      const nextScale = nextProps.chord.notes;
+      const { position: nextPosition, fretSpan: nextFretSpan } = nextProps.fretboard;
+      this.props.changeFretboardNotes(nextScale, nextPosition, nextFretSpan);
     }
   }
 
@@ -36,14 +38,14 @@ class Chord extends Component {
   }
 
   handleNotesChange({ type, tonic }) {
-    type = type || this.props.type;
-    tonic = tonic || this.props.tonic;
+    type = type || this.props.chord.type;
+    tonic = tonic || this.props.chord.tonic;
 
     this.props.getNotes(type, tonic);
   }
 
   render() {
-    const { tonic, type, notes } = this.props;
+    const { tonic, type, notes } = this.props.chord;
 
     return (
       <div className="app">
@@ -56,16 +58,32 @@ class Chord extends Component {
           <p>Type: {type}</p>
           <p>Notes: {notes}</p>
         </div>
+        <Fretboard
+          scale={this.props.chord.notes}
+          fretboard={this.props.fretboard}
+          changeFretboardNotes={this.props.changeFretboardNotes}
+        />
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ chord }) => ({ ...chord });
+const mapStateToProps = ({ chord, fretboard }) => ({
+  chord: { ...chord },
+  fretboard: { ...fretboard }
+});
 
 const mapDispatchToProps = dispatch => (
-  bindActionCreators({ changeChordTonic, changeChordType, getNotes }, dispatch)
+  bindActionCreators({
+    changeChordTonic,
+    changeChordType,
+    getNotes,
+    changeFretboardNotes
+  }, dispatch)
 );
 
-const ChordContainer = connect(mapStateToProps, mapDispatchToProps)(Chord);
+const ChordContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Chord);
 export default ChordContainer;
