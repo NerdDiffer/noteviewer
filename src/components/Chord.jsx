@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeChordTonic, changeChordType, getNotes } from '../actions';
+import { changeChordTonic, changeChordType, getNotes } from '../actions/chord';
+import { changeFretboardNotes } from '../actions/fretboard';
 import ChordForm from './ChordForm';
 import Fretboard from './Fretboard';
 import areArraysEqual from '../utils/compareArrays';

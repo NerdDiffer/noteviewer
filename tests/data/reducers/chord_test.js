@@ -1,7 +1,7 @@
 import test from 'ava'
 
-import { CHORD_TONIC, CHORD_TYPE, CHORD_NOTES } from '../../src/actions/types';
-import chordReducer from '../../src/reducers/chord';
+import { CHORD_TONIC, CHORD_TYPE, CHORD_NOTES } from '../../../src/actions/types';
+import chordReducer from '../../../src/reducers/chord';
 
 test('chordReducer provides some initial state by default', t => {
   const actual = chordReducer({}, {});
