@@ -1,0 +1,20 @@
+.fretboard.string {
+  height: 5rem;
+}
+
+.fretboard.string {
+  height: 3rem;
+  width: 100%;
+  display: inline-block;
+  outline: 1px dashed red;
+}
+
+.fretboard.note {
+  height: 100%;
+  width: 23%;
+  display: inline-block;
+  height: 80%;
+  margin: 0.25%;
+  vertical-align: middle;
+  outline: 1px dashed blue;
+}
