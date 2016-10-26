@@ -28,7 +28,6 @@ module.exports = {
         include: PATHS.SRC,
         test: /\.jsx?/,
         query: {
-          presets: ['react', 'es2015', 'stage-1'],
           cacheDirectory: true
         }
       },
