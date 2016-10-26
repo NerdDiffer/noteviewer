@@ -5,7 +5,7 @@ import { changeChordTonic, changeChordType, getNotes } from '../actions/chord';
 import { changeFretboardNotes } from '../actions/fretboard';
 import Controls from './Controls';
 import Fretboard from './Fretboard';
-import areArraysEqual from '../utils/compareArrays';
+import areArraysEqual from '../utils/areArraysEqual';
 
 class Chord extends Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import test from 'ava';
-import compareArrays from '../../src/utils/compareArrays';
+import areArraysEqual from '../../src/utils/areArraysEqual';
 
 let arr1;
 let arr2;
@@ -12,7 +12,7 @@ test.beforeEach(t => {
 });
 
 test.skip('creates a deep copy of each array', t => {
-  compareArrays(arr1, arr2);
+  areArraysEqual(arr1, arr2);
 
   console.log(arr1);
   console.log(arr2);
@@ -24,11 +24,11 @@ test.skip('creates a deep copy of each array', t => {
 });
 
 test('returns true if both arrays are considered equal', t => {
-  const actual = compareArrays(arr1, arr2);
+  const actual = areArraysEqual(arr1, arr2);
   t.true(actual);
 });
 
 test('returns false if both arrays are NOT considered equal', t => {
-  const actual = compareArrays([1, 2, 3], [1, 2, 4]);
+  const actual = areArraysEqual([1, 2, 3], [1, 2, 4]);
   t.false(actual);
 });
