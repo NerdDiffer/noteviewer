@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Segment, Divider } from 'semantic-ui-react';
 import { changeChordTonic, changeChordType, getNotes } from '../actions/chord';
 import { changeFretboardNotes } from '../actions/fretboard';
 import Controls from './Controls';
+import NotesList from './NotesList';
 import Fretboard from './Fretboard';
 import areArraysEqual from '../utils/areArraysEqual';
 
@@ -46,25 +48,22 @@ class Chord extends Component {
   }
 
   render() {
-    const { tonic, type, notes } = this.props.chord;
+    const { notes } = this.props.chord;
 
     return (
-      <div className="app">
+      <Segment className="chord">
         <Controls
           handleTonicChange={this.handleTonicChange}
           handleTypeChange={this.handleTypeChange}
         />
-        <div className="display">
-          <p>Tonic: {tonic}</p>
-          <p>Type: {type}</p>
-          <p>Notes: {notes}</p>
-        </div>
+        <NotesList notes={notes} />
+        <Divider section />
         <Fretboard
           scale={this.props.chord.notes}
           fretboard={this.props.fretboard}
           changeFretboardNotes={this.props.changeFretboardNotes}
         />
-      </div>
+      </Segment>
     );
   }
 }
