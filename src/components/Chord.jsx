@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeChordTonic, changeChordType, getNotes } from '../actions/chord';
 import { changeFretboardNotes } from '../actions/fretboard';
-import ChordForm from './ChordForm';
+import Controls from './Controls';
 import Fretboard from './Fretboard';
 import areArraysEqual from '../utils/compareArrays';
 
@@ -50,7 +50,7 @@ class Chord extends Component {
 
     return (
       <div className="app">
-        <ChordForm
+        <Controls
           handleTonicChange={this.handleTonicChange}
           handleTypeChange={this.handleTypeChange}
         />
