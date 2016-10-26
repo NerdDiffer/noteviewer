@@ -33,7 +33,7 @@ module.exports = {
       },
       {
         loader: 'json',
-        include: /node_modules\/tonal-chord/,
+        include: /node_modules\/tonal-.*/,
         test: /\.json$/
       },
     ]
