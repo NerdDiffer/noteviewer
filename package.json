@@ -3,9 +3,16 @@
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=6.4.0"
+  },
   "scripts": {
     "test": "ava",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build:styles": "cd semantic/ && gulp build",
+    "build:app": "webpack",
+    "prestart:heroku": "npm install && npm run build:styles && npm run build:app",
+    "start:heroku": "node index.js"
   },
   "keywords": [],
   "author": "Rafael Espinoza <rafael@rafaelespinoza.com> (www.rafaelespinoza.com)",
