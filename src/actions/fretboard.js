@@ -1,5 +1,6 @@
 // https://github.com/danigb/tonal/blob/master/modules/fretboard/index.js
 import { scale as fretboard } from 'tonal-fretboard';
+import processFretboardNotes from '../utils/processFretboardNotes';
 
 import {
   FRETBOARD_NUMSTRINGS, FRETBOARD_FRETSPAN, FRETBOARD_POSITION, FRETBOARD_NOTES
@@ -28,12 +29,11 @@ export const changePosition = position => {
 
 export const changeFretboardNotes = (scale, first, fretSpan) => {
   const last = first + fretSpan;
-  const notes = fretboard('guitar', scale, first, last);
-  notes.push([]);
-  notes.reverse();
+  let notes = fretboard('guitar', scale, first, last);
+  const processedNotes = processFretboardNotes(notes);
 
   return {
     type: FRETBOARD_NOTES,
-    payload: notes
+    payload: processedNotes
   };
 };
