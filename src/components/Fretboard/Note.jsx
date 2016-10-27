@@ -1,10 +1,20 @@
 import React, { PropTypes } from 'react';
+import { Grid, Label } from 'semantic-ui-react';
 
-const Note = ({ name }) => {
+const Note = ({ name, cellProps }) => {
+  const color = name ? cellProps.color : null;
+
   return (
-    <div className="fretboard note">
-      {name}
-    </div>
+    <Grid.Column
+      textAlign={cellProps.textAlign}
+      verticalAlign={cellProps.verticalAlign}
+      width={cellProps.width}
+      stretched={cellProps.stretched}
+    >
+      <Label circular color={color}>
+        {name}
+      </Label>
+    </Grid.Column>
   );
 }
 

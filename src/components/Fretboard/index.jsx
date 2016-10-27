@@ -1,15 +1,33 @@
 import React, { Component, PropTypes } from 'react';
+import { Grid } from 'semantic-ui-react';
 import FretboardString from './String';
 
 class Fretboard extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      gridProps: {
+        celled: 'internally',
+        divided: 'vertically',
+        padded: true,
+        relaxed: false,
+        textAlign: 'center',
+        verticalAlign: 'middle',
+        columns: 'equal'
+      },
+      cellProps: {
+        color: 'yellow',
+        textAlign: 'center',
+        verticalAlign: 'middle',
+        width: 4,
+        stretched: false
+      }
+    };
   }
 
   renderStrings(n) {
     const { fretSpan, notes } = this.props.fretboard;
-
-    if (!notes) { return null; }
 
     const strings = [];
 
@@ -20,6 +38,7 @@ class Fretboard extends Component {
           key={i}
           fretboardNotes={notes[i]}
           fretSpan={fretSpan}
+          cellProps={this.state.cellProps}
         />
       );
     }
@@ -28,12 +47,12 @@ class Fretboard extends Component {
   }
 
   render() {
-    const { numStrings } = this.props.fretboard;
+    const { notes, numStrings } = this.props.fretboard;
 
     return (
-      <div className="fretboard">
-        {this.renderStrings(numStrings)}
-      </div>
+      <Grid className="fretboard" { ...this.state.gridProps }>
+        {notes ? this.renderStrings(numStrings) : null}
+      </Grid>
     );
   }
 }
