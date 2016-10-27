@@ -1,21 +1,29 @@
 const express = require('express');
+const proxy = require('http-proxy');
 const http = require('http');
 const path = require('path');
 
 const app = express();
+const proxyServer = proxy.createServer();
+const isProduction = process.env.NODE_ENV === 'production';
 
-// Middleware
 const pathToStaticDir = path.resolve(__dirname, 'public');
 app.use(express.static(pathToStaticDir));
 
-// Routes
-app.get('*', (req, res) => {
-  const pathToIndex = path.join(pathToStaticDir, 'index.html');
-  res.status(200).sendFile(pathToIndex);
+if (!isProduction) {
+  const bundler = require('./scripts/bundler');
+  const devPort = 8080;
+  bundler(devPort);
+
+  app.all('/build/*', (req, res) => {
+    const target = `localhost:${devPort}`;
+    proxyServer.web(req, res, { target });
+  });
+}
+
+const PORT = process.env.PORT || 3000;
+proxyServer.on('error', err => {
+  console.log('Could not connect to proxy: ', err);
 });
 
-// Set up server
-const PORT = process.env.PORT || 3000;
-const server = http.createServer(app);
-
-server.listen(PORT, () => console.log('Server is listening on port', PORT));
+app.listen(PORT, () => console.log('App is listening on port', PORT));
