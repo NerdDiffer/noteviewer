@@ -8,11 +8,10 @@
   },
   "scripts": {
     "test": "ava",
-    "start": "webpack-dev-server",
+    "start": "node index.js",
     "build:styles": "cd semantic/ && gulp build",
-    "build:dev": "webpack",
-    "build:prod": "npm run build:styles && node scripts/build.production.js",
-    "start:heroku": "node index.js"
+    "build:prod": "NODE_ENV=production node scripts/build.production.js",
+    "clean": "rm -rf node_modules/ semantic/dist/ public/build/"
   },
   "keywords": [],
   "author": "Rafael Espinoza <rafael@rafaelespinoza.com> (www.rafaelespinoza.com)",
