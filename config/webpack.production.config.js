@@ -1,13 +1,6 @@
-const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const PATHS = {
-  SRC: path.join(__dirname, '..', 'src'),
-  PUBLIC: path.join(__dirname, '..', 'public'),
-  BUILD: path.join(__dirname, '..', 'public/build'),
-  SEMANTIC_UI: path.join(__dirname, '..', 'semantic/dist')
-};
+const PATHS = require('./paths');
 
 module.exports = {
   bail: true,
