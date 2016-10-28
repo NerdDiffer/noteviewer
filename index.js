@@ -8,9 +8,11 @@ const proxyServer = proxy.createServer();
 const isProduction = process.env.NODE_ENV === 'production';
 
 const pathToStaticDir = path.resolve(__dirname, 'public');
-app.use(express.static(pathToStaticDir));
 
-if (!isProduction) {
+if (isProduction) {
+  app.use(express.static(pathToStaticDir, { index: 'index.production.html' }));
+} else {
+  app.use(express.static(pathToStaticDir));
   const bundler = require('./scripts/bundler');
   const devPort = 8080;
   bundler(devPort);

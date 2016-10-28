@@ -3,6 +3,7 @@ const webpackDevServer = require('webpack-dev-server');
 const path = require('path');
 const fs = require('fs');
 const webpackConfig = require('../config/webpack.development.config.js');
+const PATHS = require('../config/paths');
 
 module.exports = function (devPort) {
   let bundleStart = null;
@@ -19,11 +20,11 @@ module.exports = function (devPort) {
 
     const baseUrl = `localhost:${devPort}`;
     const hotUrl = `${baseUrl}/webpack/hot/dev-server`;
-    const hotUrlStatus = `${baseUrl}/webpack-dev-server/client?http://${baseUrl}`;
+    const inlineUrl = `${baseUrl}/webpack-dev-server/client?http://${baseUrl}`;
 
     console.log('See bundled results:');
     console.log(`- hot reloaded: ${hotUrl}`);
-    console.log(`- hot reloaded with status bar: ${hotUrlStatus}`);
+    console.log(`- inline reloaded: ${inlineUrl}`);
   });
 
   const bundler = new webpackDevServer(compiler, {
@@ -35,7 +36,7 @@ module.exports = function (devPort) {
       colors: true
     },
     historyApiFallback: true,
-    contentBase: path.join(__dirname, '..', 'public')
+    contentBase: PATHS.PUBLIC
   });
 
   bundler.listen(devPort, 'localhost', () => {

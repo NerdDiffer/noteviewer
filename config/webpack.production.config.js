@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 const PATHS = require('./paths');
 
 module.exports = {
@@ -12,7 +13,7 @@ module.exports = {
   ],
   output: {
     path: PATHS.BUILD,
-    publicPath: 'build',
+    publicPath: PATHS.PROD_BUCKET,
     filename: 'bundle.js'
   },
   resolve: {
@@ -41,6 +42,11 @@ module.exports = {
         comments: false,
         screw_ie8: true
       }
+    }),
+    new HtmlPlugin({
+      template: 'public/template.html',
+      inject: true,
+      filename: '../index.production.html'
     })
   ],
   module: {

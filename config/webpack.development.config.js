@@ -5,8 +5,8 @@ const PATHS = require('./paths');
 module.exports = {
   devtool: 'eval',
   entry: [
-    'webpack/hot/dev-server',
-    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/dev-server', // hot reloading url
+    'webpack-dev-server/client?http://localhost:8080', // inline loading url
     `${PATHS.SEMANTIC_UI}/semantic.js`,
     `${PATHS.SEMANTIC_UI}/semantic.css`,
     `${PATHS.SRC}/index.jsx`,
