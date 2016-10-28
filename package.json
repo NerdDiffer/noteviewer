@@ -10,8 +10,8 @@
     "test": "ava",
     "start": "webpack-dev-server",
     "build:styles": "cd semantic/ && gulp build",
-    "build:app": "webpack",
-    "prestart:heroku": "npm install && npm run build:styles && npm run build:app",
+    "build:dev": "webpack",
+    "build:prod": "npm run build:styles && node scripts/build.production.js",
     "start:heroku": "node index.js"
   },
   "keywords": [],
