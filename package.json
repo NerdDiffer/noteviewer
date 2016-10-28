@@ -40,7 +40,7 @@
     "react-redux": "^4.4.5",
     "redux-devtools-extension": "^1.0.0",
     "redux": "^3.6.0",
-    "semantic-ui": "^2.2.4",
+    "semantic-ui": "^2.2.6",
     "semantic-ui-react": "^0.56.13",
     "tonal": "^0.50.3",
     "tonal-chord": "^0.50.2",
