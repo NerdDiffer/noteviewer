@@ -13,6 +13,17 @@ const Name = ({ stringName, cellProps }) => (
   </Grid.Column>
 );
 
+const Nut = () => (
+  <Grid.Column
+    color="black"
+    width={1}
+    stretched={true}
+    className="fretboard nut"
+  >
+    -
+  </Grid.Column>
+);
+
 // TODO: consider upgrading this to a redux-aware component. Do not need it for
 // `cellProps` (that is visual display only), but could use it for tonal-related data.
 const FretboardString = ({ fretSpan, fretboardNotes, label, cellProps, stringName }) => {
@@ -30,6 +41,7 @@ const FretboardString = ({ fretSpan, fretboardNotes, label, cellProps, stringNam
   return (
     <Grid.Row>
       {fretboardNotes ? <Name stringName={stringName} cellProps={cellProps} /> : null}
+      <Nut />
       {fretboardNotes ? renderNotes() : null}
     </Grid.Row>
   );

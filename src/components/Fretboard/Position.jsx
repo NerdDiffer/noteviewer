@@ -31,11 +31,12 @@ const Position = ({ position, fretSpan, cellProps }) => {
     return blanks;
   };
 
-  // The first cell in this row is to align name of note in FretboardString
+  // The first two cells in this row are to align note name in FretboardString
   // components, which are below this component.
   return (
     <Grid.Row>
       <Cell key="blank" cellProps={cellProps} />
+      <Grid.Column width={1} stretched={true}>{null}</Grid.Column>
       <Cell cellProps={cellProps} content={PositionLabel} />
       {renderBlanks(fretSpan, cellProps)}
     </Grid.Row>

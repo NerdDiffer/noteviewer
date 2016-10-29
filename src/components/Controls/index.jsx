@@ -26,7 +26,7 @@ const Controls = ({ handleTonicChange, handleTypeChange, handleFretSpanChange, h
           label="Fret Span"
           type="number"
           min={0}
-          max={7}
+          max={6}
           step={1}
           onChange={handleFretSpanChange}
         />
