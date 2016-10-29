@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Grid } from 'semantic-ui-react';
 import FretboardString from './String';
+import Position from './Position';
 
 class Fretboard extends Component {
   constructor(props) {
@@ -47,10 +48,15 @@ class Fretboard extends Component {
   }
 
   render() {
-    const { notes, numStrings } = this.props.fretboard;
+    const { numStrings, fretSpan, position, notes } = this.props.fretboard;
 
     return (
       <Grid className="fretboard" { ...this.state.gridProps }>
+        <Position
+          position={position}
+          fretSpan={fretSpan}
+          cellProps={this.state.cellProps}
+        />
         {notes ? this.renderStrings(numStrings) : null}
       </Grid>
     );
