@@ -20,7 +20,7 @@ class Fretboard extends Component {
         color: 'yellow',
         textAlign: 'center',
         verticalAlign: 'middle',
-        width: 4,
+        width: 2,
         stretched: false
       }
     };

@@ -2,7 +2,7 @@ import React from 'react';
 import { Form } from 'semantic-ui-react';
 import SelectChordType from './SelectChordType';
 
-const Controls = ({ handleTonicChange, handleTypeChange }) => (
+const Controls = ({ handleTonicChange, handleTypeChange, handleFretSpanChange }) => (
   <Form className="controls">
     <Form.Group widths="equal">
       <Form.Field>
@@ -19,6 +19,16 @@ const Controls = ({ handleTonicChange, handleTypeChange }) => (
           label="Type"
           control={SelectChordType}
           handleTypeChange={handleTypeChange}
+        />
+      </Form.Field>
+      <Form.Field>
+        <Form.Input
+          label="Fret Span"
+          type="number"
+          min={0}
+          max={8}
+          step={1}
+          onChange={handleFretSpanChange}
         />
       </Form.Field>
     </Form.Group>

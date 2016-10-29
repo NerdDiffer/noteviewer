@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Segment, Divider } from 'semantic-ui-react';
 import { changeChordTonic, changeChordType, getNotes } from '../actions/chord';
-import { changeFretboardNotes } from '../actions/fretboard';
+import { changeFretboardNotes, changeFretSpan } from '../actions/fretboard';
 import Controls from './Controls';
 import NotesList from './NotesList';
 import Fretboard from './Fretboard';
@@ -15,6 +15,7 @@ class Chord extends Component {
 
     this.handleTonicChange = this.handleTonicChange.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
+    this.handleFretSpanChange = this.handleFretSpanChange.bind(this);
     this.handleNotesChange = this.handleNotesChange.bind(this);
   }
 
@@ -22,12 +23,13 @@ class Chord extends Component {
     // trying to update 1 piece of state, at most, per render
     const { type: currType, tonic: currTonic, notes: currNotes } = this.props.chord;
     const { type: nextType, tonic: nextTonic, notes: nextNotes } = nextProps.chord;
+    const { position: currPosition, fretSpan: currFretSpan } = this.props.fretboard;
+    const { position: nextPosition, fretSpan: nextFretSpan } = nextProps.fretboard;
 
     if (currType !== nextType || currTonic !== nextTonic) {
       this.handleNotesChange({ type: nextType, tonic: nextTonic });
-    } else if (!areArraysEqual(currNotes, nextNotes)) {
+    } else if (currFretSpan !== nextFretSpan || !areArraysEqual(currNotes, nextNotes)) {
       const nextScale = nextProps.chord.notes;
-      const { position: nextPosition, fretSpan: nextFretSpan } = nextProps.fretboard;
       this.props.changeFretboardNotes(nextScale, nextPosition, nextFretSpan);
     }
   }
@@ -38,6 +40,11 @@ class Chord extends Component {
 
   handleTypeChange(_proxy, { value }) {
     this.props.changeChordType(value)
+  }
+
+  handleFretSpanChange(e) {
+    const span = parseInt(e.target.value);
+    this.props.changeFretSpan(span)
   }
 
   handleNotesChange({ type, tonic }) {
@@ -55,6 +62,7 @@ class Chord extends Component {
         <Controls
           handleTonicChange={this.handleTonicChange}
           handleTypeChange={this.handleTypeChange}
+          handleFretSpanChange={this.handleFretSpanChange}
         />
         <NotesList notes={notes} />
         <Divider section />
@@ -78,7 +86,8 @@ const mapDispatchToProps = dispatch => (
     changeChordTonic,
     changeChordType,
     getNotes,
-    changeFretboardNotes
+    changeFretboardNotes,
+    changeFretSpan
   }, dispatch)
 );
 
