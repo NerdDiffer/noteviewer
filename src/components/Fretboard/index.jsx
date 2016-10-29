@@ -40,6 +40,7 @@ class Fretboard extends Component {
           fretboardNotes={notes[i]}
           fretSpan={fretSpan}
           cellProps={this.state.cellProps}
+          stringName={i}
         />
       );
     }

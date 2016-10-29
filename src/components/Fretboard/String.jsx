@@ -2,7 +2,20 @@ import React, { PropTypes } from 'react';
 import { Grid } from 'semantic-ui-react';
 import Note from './Note';
 
-const FretboardString = ({ fretSpan, fretboardNotes, label, cellProps }) => {
+const Name = ({ stringName, cellProps }) => (
+  <Grid.Column
+    textAlign={cellProps.textAlign}
+    verticalAlign={cellProps.verticalAlign}
+    width={cellProps.width}
+    stretched={cellProps.stretched}
+  >
+    {stringName}
+  </Grid.Column>
+);
+
+// TODO: consider upgrading this to a redux-aware component. Do not need it for
+// `cellProps` (that is visual display only), but could use it for tonal-related data.
+const FretboardString = ({ fretSpan, fretboardNotes, label, cellProps, stringName }) => {
   const renderNotes = () => {
     const notes = [];
 
@@ -15,7 +28,8 @@ const FretboardString = ({ fretSpan, fretboardNotes, label, cellProps }) => {
   };
 
   return (
-    <Grid.Row className="fretboard string">
+    <Grid.Row>
+      {fretboardNotes ? <Name stringName={stringName} cellProps={cellProps} /> : null}
       {fretboardNotes ? renderNotes() : null}
     </Grid.Row>
   );
@@ -24,7 +38,11 @@ const FretboardString = ({ fretSpan, fretboardNotes, label, cellProps }) => {
 FretboardString.propTypes = {
   fretSpan: PropTypes.number,
   label: PropTypes.string,
-  cellProps: PropTypes.object
+  cellProps: PropTypes.object,
+  name: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ])
 };
 
 export default FretboardString;
