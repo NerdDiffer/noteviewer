@@ -18,6 +18,9 @@ const Position = ({ position, fretSpan, cellProps }) => {
     position < 1 ? null : <Label circular color="blue">{position}</Label>
   );
 
+  // TODO: performance improvement? See if you can create just one Grid.Column
+  // component, and set its width to be the difference of
+  // fretSpan and # of spacer columns.
   const renderBlanks = (fretSpan, cellProps) => {
     const blanks = [];
 
@@ -28,6 +31,8 @@ const Position = ({ position, fretSpan, cellProps }) => {
     return blanks;
   };
 
+  // The first cell in this row is to align name of note in FretboardString
+  // components, which are below this component.
   return (
     <Grid.Row>
       <Cell key="blank" cellProps={cellProps} />
