@@ -1,6 +1,12 @@
 import React, { PropTypes } from 'react';
 import { Grid, Label } from 'semantic-ui-react';
 
+const NoteLabel = ({ color, name }) => (
+  <Label circular color={color}>
+    {name}
+  </Label>
+);
+
 const Note = ({ name, cellProps }) => {
   const color = name ? cellProps.color : null;
 
@@ -11,9 +17,7 @@ const Note = ({ name, cellProps }) => {
       width={cellProps.width}
       stretched={cellProps.stretched}
     >
-      <Label circular color={color}>
-        {name}
-      </Label>
+      {name ? <NoteLabel color={color} name={name} /> : null}
     </Grid.Column>
   );
 }
