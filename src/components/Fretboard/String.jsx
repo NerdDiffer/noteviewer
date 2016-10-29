@@ -1,17 +1,22 @@
 import React, { PropTypes } from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Label } from 'semantic-ui-react';
+import { toOrdinal } from 'number-to-words';
 import Note from './Note';
 
-const Name = ({ stringName, cellProps }) => (
-  <Grid.Column
-    textAlign={cellProps.textAlign}
-    verticalAlign={cellProps.verticalAlign}
-    width={cellProps.width}
-    stretched={cellProps.stretched}
-  >
-    {stringName}
-  </Grid.Column>
-);
+const Name = ({ stringName, cellProps }) => {
+  const label = `${toOrdinal(stringName)} string`;
+
+  return (
+    <Grid.Column
+      textAlign={cellProps.textAlign}
+      verticalAlign={cellProps.verticalAlign}
+      width={cellProps.width}
+      stretched={cellProps.stretched}
+    >
+      <Label pointing="right">{label}</Label>
+    </Grid.Column>
+  );
+};
 
 const Nut = () => (
   <Grid.Column

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Grid, Label } from 'semantic-ui-react';
+import { toOrdinal } from 'number-to-words';
 
 const Cell = ({ cellProps, content }) => (
   <Grid.Column
@@ -14,9 +15,6 @@ const Cell = ({ cellProps, content }) => (
 
 // TODO: remove cell separators, may need to create a whole new Grid for this...
 const Position = ({ position, fretSpan, cellProps }) => {
-  const PositionLabel = (
-    position < 1 ? null : <Label circular color="blue">{position}</Label>
-  );
 
   // TODO: performance improvement? See if you can create just one Grid.Column
   // component, and set its width to be the difference of
@@ -31,13 +29,19 @@ const Position = ({ position, fretSpan, cellProps }) => {
     return blanks;
   };
 
+  const renderPositionLabel = position => {
+    if (position < 1) { return null; }
+    const label = `${toOrdinal(position)} fret`;
+    return <Label pointing="below">{label}</Label>;
+  };
+
   // The first two cells in this row are to align note name in FretboardString
   // components, which are below this component.
   return (
     <Grid.Row>
       <Cell key="blank" cellProps={cellProps} />
       <Grid.Column width={1} stretched={true}>{null}</Grid.Column>
-      <Cell cellProps={cellProps} content={PositionLabel} />
+      <Cell cellProps={cellProps} content={renderPositionLabel(position)} />
       {renderBlanks(fretSpan, cellProps)}
     </Grid.Row>
   );
