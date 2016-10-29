@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Segment, Divider } from 'semantic-ui-react';
 import { changeChordTonic, changeChordType, getNotes } from '../actions/chord';
-import { changeFretboardNotes, changeFretSpan } from '../actions/fretboard';
+import { changeFretboardNotes, changeFretSpan, changePosition } from '../actions/fretboard';
 import Controls from './Controls';
 import NotesList from './NotesList';
 import Fretboard from './Fretboard';
@@ -16,6 +16,7 @@ class Chord extends Component {
     this.handleTonicChange = this.handleTonicChange.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleFretSpanChange = this.handleFretSpanChange.bind(this);
+    this.handlePositionChange = this.handlePositionChange.bind(this);
     this.handleNotesChange = this.handleNotesChange.bind(this);
   }
 
@@ -28,7 +29,7 @@ class Chord extends Component {
 
     if (currType !== nextType || currTonic !== nextTonic) {
       this.handleNotesChange({ type: nextType, tonic: nextTonic });
-    } else if (currFretSpan !== nextFretSpan || !areArraysEqual(currNotes, nextNotes)) {
+    } else if (currFretSpan !== nextFretSpan || currPosition !== nextPosition || !areArraysEqual(currNotes, nextNotes)) {
       const nextScale = nextProps.chord.notes;
       this.props.changeFretboardNotes(nextScale, nextPosition, nextFretSpan);
     }
@@ -47,6 +48,11 @@ class Chord extends Component {
     this.props.changeFretSpan(span)
   }
 
+  handlePositionChange(e) {
+    const position = parseInt(e.target.value);
+    this.props.changePosition(position)
+  }
+
   handleNotesChange({ type, tonic }) {
     type = type || this.props.chord.type;
     tonic = tonic || this.props.chord.tonic;
@@ -63,6 +69,7 @@ class Chord extends Component {
           handleTonicChange={this.handleTonicChange}
           handleTypeChange={this.handleTypeChange}
           handleFretSpanChange={this.handleFretSpanChange}
+          handlePositionChange={this.handlePositionChange}
         />
         <NotesList notes={notes} />
         <Divider section />
@@ -87,7 +94,8 @@ const mapDispatchToProps = dispatch => (
     changeChordType,
     getNotes,
     changeFretboardNotes,
-    changeFretSpan
+    changeFretSpan,
+    changePosition
   }, dispatch)
 );
 
