@@ -1,7 +1,8 @@
-# Guitar Chord Diagram Viewer
+# Note Viewer
 
-A guitar fretboard chord diagram viewer.
-Built with React, Redux.
+A guitar fretboard chord diagram viewer. Built with React, Redux. Musical
+elements based on the functional music theory library,
+[tonal](https://github.com/danigb/tonal).
 
 ## Installations
 
@@ -19,8 +20,8 @@ consistent styling.
 * Build the source:
   * `npm run build:styles`
 
-The entirety of the framework is committed to source control. This GitHub issue
-recommends it: https://github.com/Semantic-Org/Semantic-UI/issues/3620
+The framework is committed to source control. This GitHub issue recommends it:
+[link](https://github.com/Semantic-Org/Semantic-UI/issues/3620).
 
 #### Semantic-UI docs
 
