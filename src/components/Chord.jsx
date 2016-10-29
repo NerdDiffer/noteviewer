@@ -36,8 +36,8 @@ class Chord extends Component {
     this.props.changeChordTonic(e.target.value)
   }
 
-  handleTypeChange(e) {
-    this.props.changeChordType(e.target.value)
+  handleTypeChange(_proxy, { value }) {
+    this.props.changeChordType(value)
   }
 
   handleNotesChange({ type, tonic }) {

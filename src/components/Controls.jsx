@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'semantic-ui-react';
+import SelectChordType from './SelectChordType';
 
 const Controls = ({ handleTonicChange, handleTypeChange }) => (
   <Form className="controls">
@@ -14,12 +15,10 @@ const Controls = ({ handleTonicChange, handleTypeChange }) => (
         />
       </Form.Field>
       <Form.Field>
-        <label htmlFor="chord_type">Type</label>
-        <Form.Input
-          type="text"
-          placeholder="Change type"
-          onChange={handleTypeChange}
-          id="chord_type"
+        <Form.Select
+          label="Type"
+          control={SelectChordType}
+          handleTypeChange={handleTypeChange}
         />
       </Form.Field>
     </Form.Group>
