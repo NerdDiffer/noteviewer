@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Grid, Label } from 'semantic-ui-react';
 import { toOrdinal } from 'number-to-words';
+import ToggleLabels from './ToggleLabels';
 
 const Cell = ({ cellProps, content }) => (
   <Grid.Column
@@ -30,7 +31,6 @@ const Position = ({ position, fretSpan, cellProps }) => {
   };
 
   const renderPositionLabel = position => {
-    if (position < 1) { return null; }
     const label = `${toOrdinal(position)} fret`;
     return <Label pointing="below">{label}</Label>;
   };
@@ -39,9 +39,12 @@ const Position = ({ position, fretSpan, cellProps }) => {
   // components, which are below this component.
   return (
     <Grid.Row>
-      <Cell key="blank" cellProps={cellProps} />
-      <Grid.Column width={1} stretched={true}>{null}</Grid.Column>
-      <Cell cellProps={cellProps} content={renderPositionLabel(position)} />
+      <Grid.Column width={3} stretched={true}>
+        <ToggleLabels />
+      </Grid.Column>
+      <Grid.Column {...cellProps} color={null}>
+        {position > 0 ? renderPositionLabel(position) : null}
+      </Grid.Column>
       {renderBlanks(fretSpan, cellProps)}
     </Grid.Row>
   );
