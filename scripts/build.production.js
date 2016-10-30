@@ -3,7 +3,7 @@ if (process.env.NODE_ENV === 'production') {
   const { join } = require('path');
 
   const webpackConfig = join(__dirname, '../config/webpack.production.config.js');
-  const cmd = `webpack -p --config ${webpackConfig}`;
+  const cmd = `webpack -p --config ${webpackConfig} --progress`;
 
   exec(cmd, (error, stdout, stderr) => {
     if (error) {

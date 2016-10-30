@@ -44,13 +44,3 @@ Read these to know more:
   * `npm run build:prod`
 * Start app:
   * `NODE_ENV=production npm start`
-
-### Deployment
-
-* Run the production build from the previous step.
-* Upload files to AWS bucket.
-  * Yes, kind of a pain. Since the app is hosted on Heroku, they only allow
-    60 seconds between the git push and for the server to start, and the build
-    takes over 2 minutes, I have to take these measures. So, it's easier to build
-    these files locally, then have the Express server remotely load the app.
-* `git push heroku`

@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlPlugin = require('html-webpack-plugin');
 const PATHS = require('./paths');
 
 module.exports = {
@@ -13,7 +12,6 @@ module.exports = {
   ],
   output: {
     path: PATHS.BUILD,
-    publicPath: PATHS.PROD_BUCKET,
     filename: 'bundle.js'
   },
   resolve: {
@@ -27,13 +25,17 @@ module.exports = {
       jQuery: 'jquery'
     }),
     new ExtractTextPlugin('styles.css'),
-    new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      compressor: {
+      compress: {
         screw_ie8: true,
-        warnings: false
+        warnings: true
       },
       mangle: {
         screw_ie8: true,
@@ -42,11 +44,6 @@ module.exports = {
         comments: false,
         screw_ie8: true
       }
-    }),
-    new HtmlPlugin({
-      template: 'public/template.html',
-      inject: true,
-      filename: '../index.production.html'
     })
   ],
   module: {
