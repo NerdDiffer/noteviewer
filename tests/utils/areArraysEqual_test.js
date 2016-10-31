@@ -1,5 +1,5 @@
 import test from 'ava';
-import areArraysEqual from '../../src/utils/areArraysEqual';
+import areArraysEqual, { cloneAndSort } from '../../src/utils/areArraysEqual';
 
 let arr1;
 let arr2;
@@ -7,20 +7,17 @@ let arr2;
 const reset = (arr, to) => (arr = to);
 
 test.beforeEach(t => {
-  arr1 = reset(arr1, [1, 2, 3]);
+  arr1 = reset(arr1, [2, 3, 1]);
   arr2 = reset(arr2, [3, 2, 1]);
 });
 
-test.skip('creates a deep copy of each array', t => {
-  areArraysEqual(arr1, arr2);
+test('#cloneAndSort, creates a deep copy of and sorts an array', t => {
+  const copy = cloneAndSort(arr1);
 
-  console.log(arr1);
-  console.log(arr2);
-  arr1.push(4);
-  arr2.push(0);
+  copy.push(4);
 
-  t.deepEqual(arr1, [1, 2, 3]);
-  t.deepEqual(arr2, [3, 2, 1]);
+  t.deepEqual(arr1, [2, 3, 1]);
+  t.deepEqual(copy, [1, 2, 3, 4]);
 });
 
 test('returns true if both arrays are considered equal', t => {
