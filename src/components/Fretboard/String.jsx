@@ -32,7 +32,7 @@ const Nut = () => (
 
 // TODO: consider upgrading this to a redux-aware component. Do not need it for
 // `cellProps` (that is visual display only), but could use it for tonal-related data.
-const FretboardString = ({ fretSpan, fretboardNotes, label, cellProps, stringName }) => {
+const FretboardString = ({ fretSpan, fretboardNotes, label, cellProps, stringName, showLabels }) => {
   const renderNotes = () => {
     const notes = [];
 
@@ -46,7 +46,7 @@ const FretboardString = ({ fretSpan, fretboardNotes, label, cellProps, stringNam
 
   return (
     <Grid.Row className="fretboard string">
-      {fretboardNotes ? <Name stringName={stringName} cellProps={cellProps} /> : null}
+      {showLabels ? <Name stringName={stringName} cellProps={cellProps} /> : null}
       <Nut />
       {fretboardNotes ? renderNotes() : null}
     </Grid.Row>
@@ -60,7 +60,8 @@ FretboardString.propTypes = {
   name: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
-  ])
+  ]),
+  showLabels: PropTypes.bool
 };
 
 export default FretboardString;

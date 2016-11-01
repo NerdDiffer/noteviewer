@@ -5,7 +5,16 @@ import { Radio, Label } from 'semantic-ui-react';
 // TODO: add handlers.
 // Make the RH-side be activated (by default) b/c it's colored.
 const ToggleLabels = ({ onToggle }) => (
-  <Radio toggle label="Toggle Labels" />
+  <Radio
+    defaultChecked
+    toggle
+    label="Toggle Labels"
+    onChange={onToggle}
+  />
 );
+
+ToggleLabels.propTypes = {
+  onToggle: PropTypes.func
+};
 
 export default ToggleLabels;

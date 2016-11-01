@@ -26,8 +26,11 @@ class Fretboard extends Component {
         verticalAlign: 'middle',
         width: 2,
         stretched: false
-      }
+      },
+      showLabels: true
     };
+
+    this.toggleShowLabels = this.toggleShowLabels.bind(this);
   }
 
   renderStrings(n) {
@@ -43,12 +46,18 @@ class Fretboard extends Component {
           fretboardNotes={notes[i]}
           fretSpan={fretSpan}
           cellProps={this.state.cellProps}
+          showLabels={this.state.showLabels}
           stringName={i}
         />
       );
     }
 
     return strings;
+  }
+
+  toggleShowLabels() {
+    const showLabels = this.state.showLabels;
+    this.setState({ showLabels: !showLabels });
   }
 
   render() {
@@ -62,6 +71,8 @@ class Fretboard extends Component {
           position={position}
           fretSpan={fretSpan}
           cellProps={this.state.cellProps}
+          showLabels={this.state.showLabels}
+          toggleShowLabels={this.toggleShowLabels}
         />
         {notes ? this.renderStrings(numStrings) : null}
       </Grid>
