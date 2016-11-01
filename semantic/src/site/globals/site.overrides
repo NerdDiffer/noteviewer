@@ -1,3 +1,41 @@
 /*******************************
          Site Overrides
 *******************************/
+// Fretboard
+#fretboard {
+  // outline: 1px dashed @pink;
+
+  .string {
+    // outline: 1px dashed @teal;
+    padding: 0;
+
+    & .positionLabel {
+      // outline: 1px dashed @blue;
+    }
+
+    // wraps up a <Label /> component, denoting name of string
+    & .stringLabel {
+      // outline: 1px dashed @red;
+    }
+
+    & .nut {
+      // outline: 1px dashed @orange;
+      height: 100%;
+    }
+
+    & .fret {
+      // outline: 1px dashed @olive;
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+
+      border-left: (@fret-width / 2) solid @black;
+      border-right:  (@fret-width / 2)solid @black;
+
+      &:last-child {
+        border-right: @fret-width solid @black;
+      }
+    }
+  }
+}
