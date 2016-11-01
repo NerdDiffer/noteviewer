@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Grid, Label } from 'semantic-ui-react';
+import cx from 'classnames';
 
 const NoteLabel = ({ color, name }) => (
   <Label circular color={color}>
@@ -9,6 +10,11 @@ const NoteLabel = ({ color, name }) => (
 
 const Note = ({ name, cellProps }) => {
   const color = name ? cellProps.color : null;
+  const classnames = cx({
+    fretboard: true,
+    fret: true,
+    note: !!name
+  });
 
   return (
     <Grid.Column
@@ -16,6 +22,7 @@ const Note = ({ name, cellProps }) => {
       verticalAlign={cellProps.verticalAlign}
       width={cellProps.width}
       stretched={cellProps.stretched}
+      className={classnames}
     >
       {name ? <NoteLabel color={color} name={name} /> : null}
     </Grid.Column>

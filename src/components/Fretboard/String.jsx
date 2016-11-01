@@ -12,6 +12,7 @@ const Name = ({ stringName, cellProps }) => {
       verticalAlign={cellProps.verticalAlign}
       width={cellProps.width}
       stretched={cellProps.stretched}
+      className="stringLabel"
     >
       <Label pointing="right">{label}</Label>
     </Grid.Column>
@@ -25,7 +26,7 @@ const Nut = () => (
     stretched={true}
     className="fretboard nut"
   >
-    -
+    <span />
   </Grid.Column>
 );
 
@@ -44,7 +45,7 @@ const FretboardString = ({ fretSpan, fretboardNotes, label, cellProps, stringNam
   };
 
   return (
-    <Grid.Row>
+    <Grid.Row className="fretboard string">
       {fretboardNotes ? <Name stringName={stringName} cellProps={cellProps} /> : null}
       <Nut />
       {fretboardNotes ? renderNotes() : null}

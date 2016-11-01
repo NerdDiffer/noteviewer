@@ -42,7 +42,7 @@ const Position = ({ position, fretSpan, cellProps }) => {
       <Grid.Column width={3} stretched={true}>
         <ToggleLabels />
       </Grid.Column>
-      <Grid.Column {...cellProps} color={null}>
+      <Grid.Column {...cellProps} color={null} className="positionLabel">
         {position > 0 ? renderPositionLabel(position) : null}
       </Grid.Column>
       {renderBlanks(fretSpan, cellProps)}

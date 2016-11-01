@@ -8,14 +8,17 @@ class Fretboard extends Component {
     super(props);
 
     this.state = {
+      // Some of these values can either be booleans, or strings.
+      // If there is a comment beside a value, semantic-ui accepts it
       gridProps: {
-        celled: 'internally',
-        divided: 'vertically',
-        padded: true,
-        relaxed: false,
+        celled: false, // 'internally',
+        divided: false, // 'vertically',
+        padded: false, // 'horizontally', 'vertically'
+        relaxed: false, // 'very'
         textAlign: 'center',
         verticalAlign: 'middle',
-        columns: 'equal'
+        columns: 'equal',
+        stackable: false
       },
       cellProps: {
         color: 'yellow',
@@ -51,8 +54,10 @@ class Fretboard extends Component {
   render() {
     const { numStrings, fretSpan, position, notes } = this.props.fretboard;
 
+    const fretboard = 'fretboard';
+
     return (
-      <Grid className="fretboard" { ...this.state.gridProps }>
+      <Grid id={fretboard} className={fretboard} { ...this.state.gridProps }>
         <Position
           position={position}
           fretSpan={fretSpan}
