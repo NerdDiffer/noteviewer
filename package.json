@@ -73,7 +73,8 @@
     ],
     "concurrency": 5,
     "failFast": false,
-    "tap": true,
+    "tap": false,
+    "verbose": true,
     "require": [
       "babel-register"
     ],
