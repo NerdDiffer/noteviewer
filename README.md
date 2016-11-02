@@ -1,8 +1,10 @@
-# Note Viewer
+# noteviewer
 
-A guitar fretboard chord diagram viewer. Built with React, Redux. Musical
+A guitar fretboard diagram viewer. Built with React, Redux. Musical
 elements based on the functional music theory library,
 [tonal](https://github.com/danigb/tonal).
+
+[Demo](https://noteviewer.herokuapp.com/)
 
 ## Installations
 
@@ -20,8 +22,9 @@ consistent styling.
 * Build the source:
   * `npm run build:styles`
 
-The framework is committed to source control. This GitHub issue recommends it:
-[link](https://github.com/Semantic-Org/Semantic-UI/issues/3620).
+Component definitions & preset themes are committed to source control.
+This GitHub [issue](https://github.com/Semantic-Org/Semantic-UI/issues/3620)
+recommends it.
 
 #### Semantic-UI docs
 
@@ -29,6 +32,10 @@ Read these to know more:
 
 * [Getting Started](http://semantic-ui.com/introduction/getting-started.html)
 * [Theming](http://semantic-ui.com/usage/theming.html)
+
+### Run tests
+
+`npm test`
 
 ## Starting, building
 
@@ -40,7 +47,11 @@ Read these to know more:
 
 ### Production
 
-* Bundle application & output to `public/build`
-  * `npm run build:prod`
+To locally test a production build:
+
+* Remove all build files
+  * `npm run clean`
+* Build style framework, bundle application & output to `public/build`
+  * `npm run heroku-postbuild`
 * Start app:
   * `NODE_ENV=production npm start`
