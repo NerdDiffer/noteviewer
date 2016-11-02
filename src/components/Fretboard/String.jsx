@@ -19,9 +19,9 @@ const Name = ({ stringName, cellProps }) => {
   );
 };
 
-const Nut = () => (
+const Nut = ({ color }) => (
   <Grid.Column
-    color="black"
+    color={color}
     width={1}
     stretched={true}
     className="fretboard nut"
@@ -32,36 +32,45 @@ const Nut = () => (
 
 // TODO: consider upgrading this to a redux-aware component. Do not need it for
 // `cellProps` (that is visual display only), but could use it for tonal-related data.
-const FretboardString = ({ fretSpan, fretboardNotes, label, cellProps, stringName, showLabels }) => {
-  const renderNotes = () => {
-    const notes = [];
+const FretboardString = props => {
+  const { stringName, span, notes, cellProps, showLabels, showNut } = props;
 
-    for (let i = 0; i < fretSpan; i += 1) {
-      const name = fretboardNotes[i];
-      notes.push(<Note key={i} name={name} cellProps={cellProps} />);
+  const renderNotes = () => {
+    const notesToRender = [];
+
+    for (let i = 0; i < span; i += 1) {
+      const name = notes[i];
+
+      const note = (
+        <Note
+          key={i}
+          name={name}
+          cellProps={cellProps}
+        />
+      );
+
+      notesToRender.push(note);
     }
 
-    return notes;
+    return notesToRender;
   };
 
   return (
     <Grid.Row className="fretboard string">
       {showLabels ? <Name stringName={stringName} cellProps={cellProps} /> : null}
-      <Nut />
-      {fretboardNotes ? renderNotes() : null}
+      {showNut ? <Nut color="black" /> : <Nut color={null} />}
+      {notes ? renderNotes() : null}
     </Grid.Row>
   );
 }
 
 FretboardString.propTypes = {
-  fretSpan: PropTypes.number,
-  label: PropTypes.string,
+  stringName: PropTypes.number,
+  span: PropTypes.number,
+  notes: PropTypes.array,
   cellProps: PropTypes.object,
-  name: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
-  showLabels: PropTypes.bool
+  showLabels: PropTypes.bool,
+  showNut: PropTypes.bool
 };
 
 export default FretboardString;

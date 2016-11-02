@@ -27,6 +27,17 @@
       height: 100%;
     }
 
+    .stringMixin(@height: 2px) {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      height: @height;
+      background: @grey;
+      content: '';
+      width: 100%;
+      display: block;
+    }
+
     & .fret {
       // outline: 1px dashed @olive;
       display: flex;
@@ -34,11 +45,28 @@
       align-items: center;
       justify-content: center;
 
+      /* Emulating the look of frets */
+
       border-left: (@fret-width / 2) solid @black;
       border-right:  (@fret-width / 2)solid @black;
 
+      &:first-child {
+        border-left: @fret-width solid @black;
+      }
+
       &:last-child {
         border-right: @fret-width solid @black;
+      }
+
+      /* Emulating the look of guitar strings */
+      &:after {
+        .stringMixin(1px);
+      }
+
+      // if there is a note to display,
+      & .label {
+        // then place note labels above the rendered instrument string
+        z-index: 1;
       }
     }
   }

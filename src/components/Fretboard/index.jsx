@@ -71,20 +71,21 @@ class Fretboard extends Component {
   }
 
   renderStrings(n) {
-    const { fretSpan, notes } = this.props.fretboard;
+    const { fretSpan, position, notes } = this.props.fretboard;
+    const showNut = position < 1;
 
     const strings = [];
 
     for (let i = 1; i <= n; i += 1) {
       strings.push(
         <FretboardString
-          label={i.toString()}
           key={i}
-          fretboardNotes={notes[i]}
-          fretSpan={fretSpan}
+          stringName={i}
+          span={fretSpan}
+          notes={notes[i]}
           cellProps={this.state.cellProps}
           showLabels={this.state.showLabels}
-          stringName={i}
+          showNut={showNut}
         />
       );
     }
