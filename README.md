@@ -51,6 +51,8 @@ To locally test a production build:
 
 * Remove all build files
   * `npm run clean`
+* Install production dependencies
+  * `npm install --production`
 * Build style framework, bundle application & output to `public/build`
   * `npm run heroku-postbuild`
 * Start app:
