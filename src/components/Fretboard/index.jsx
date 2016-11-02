@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Divider } from 'semantic-ui-react';
 import {
   changeFretboardNotes,
   changeFretSpan,
@@ -108,6 +108,7 @@ class Fretboard extends Component {
           handleFretSpanChange={this.handleFretSpanChange}
           handlePositionChange={this.handlePositionChange}
         />
+        <Divider section />
         <Grid id={fretboard} className={fretboard} { ...this.state.gridProps }>
           <Position
             position={position}

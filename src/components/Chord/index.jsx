@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Segment } from 'semantic-ui-react';
 import {
   changeChordTonic,
   changeChordType,
@@ -47,13 +46,13 @@ class Chord extends Component {
     const { notes } = this.props.chord;
 
     return (
-      <Segment className="chord">
+      <div className="chordWrapper">
         <ChordControls
           handleTonicChange={this.handleTonicChange}
           handleTypeChange={this.handleTypeChange}
         />
         <NotesList notes={notes} />
-      </Segment>
+      </div>
     );
   }
 }

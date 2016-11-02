@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Divider } from 'semantic-ui-react';
+import { Container, Segment } from 'semantic-ui-react';
 import Chord from './Chord';
 import Fretboard from './Fretboard';
 
@@ -10,10 +10,11 @@ class App extends Component {
         className="app"
         textAlign="center"
       >
-        <h1>Guitar chord diagrams</h1>
-        <Chord />
-        <Divider section />
-        <Fretboard />
+        <Segment>
+          <h1>Guitar chord diagrams</h1>
+          <Chord />
+          <Fretboard />
+        </Segment>
       </Container>
     );
   }

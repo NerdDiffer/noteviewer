@@ -2,6 +2,10 @@
          Site Overrides
 *******************************/
 // Fretboard
+.fretboardWrapper {
+  margin-bottom: 2rem;
+}
+
 #fretboard {
   // outline: 1px dashed @pink;
 
