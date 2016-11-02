@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Grid, Label } from 'semantic-ui-react';
 import { toOrdinal } from 'number-to-words';
-import ToggleLabels from './ToggleLabels';
+import ToggleLabels from '../Controls/ToggleFretboardLabels';
 
 const Cell = ({ cellProps, content }) => (
   <Grid.Column
