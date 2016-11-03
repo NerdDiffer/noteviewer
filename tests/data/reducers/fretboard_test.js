@@ -4,7 +4,8 @@ import {
   FRETBOARD_NUMSTRINGS,
   FRETBOARD_FRETSPAN,
   FRETBOARD_POSITION,
-  FRETBOARD_NOTES
+  FRETBOARD_NOTES,
+  ERROR_MESSAGE
 } from '../../../src/actions/types';
 import fretboardReducer from '../../../src/reducers/fretboard';
 
@@ -78,6 +79,16 @@ test('fretboardReducer responds to FRETBOARD_NOTES action type', t => {
     position: 0,
     notes: [[], [null, 'F']]
   };
+
+  t.deepEqual(actual, expected);
+});
+
+test('fretboardReducer does not respond to ERROR_MESSAGE action type', t => {
+  const dummyState = resetDummyState();
+  const action = { type: ERROR_MESSAGE, payload: 'test message' };
+
+  const actual = fretboardReducer(dummyState, action);
+  const expected = resetDummyState();
 
   t.deepEqual(actual, expected);
 });

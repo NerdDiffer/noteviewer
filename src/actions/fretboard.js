@@ -1,9 +1,11 @@
 // https://github.com/danigb/tonal/blob/master/modules/fretboard/index.js
 import { scale as fretboard } from 'tonal-fretboard';
 import processFretboardNotes from '../utils/processFretboardNotes';
+import { setErrorMessage } from './error';
 
 import {
-  FRETBOARD_NUMSTRINGS, FRETBOARD_FRETSPAN, FRETBOARD_POSITION, FRETBOARD_NOTES
+  FRETBOARD_NUMSTRINGS, FRETBOARD_FRETSPAN, FRETBOARD_POSITION, FRETBOARD_NOTES,
+  ERROR_MESSAGE
 } from './types';
 
 export const changeNumStrings = numStrings => {
@@ -14,17 +16,25 @@ export const changeNumStrings = numStrings => {
 };
 
 export const changeFretSpan = fretSpan => {
-  return {
-    type: FRETBOARD_FRETSPAN,
-    payload: fretSpan
-  };
+  if (fretSpan < 0 || fretSpan > 6) {
+    return setErrorMessage('Fret span must be between 1 and 6');
+  } else {
+    return {
+      type: FRETBOARD_FRETSPAN,
+      payload: fretSpan
+    };
+  }
 };
 
 export const changePosition = position => {
-  return {
-    type: FRETBOARD_POSITION,
-    payload: position
-  };
+  if (position < 0 || position > 15) {
+    return setErrorMessage('Position must be between 1 and 15');
+  } else {
+    return {
+      type: FRETBOARD_POSITION,
+      payload: position
+    };
+  }
 };
 
 export const changeFretboardNotes = (scale, first, fretSpan) => {

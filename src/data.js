@@ -19,4 +19,8 @@ fretboard.notes = initFretboardNotes(
   fretboard.fretSpan
 ).payload;
 
-export default { chord, fretboard };
+const error = {
+  message: null
+};
+
+export default { chord, fretboard, error };
