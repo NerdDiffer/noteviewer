@@ -20,6 +20,7 @@
     // wraps up a <Label /> component, denoting name of string
     & .stringLabel {
       // outline: 1px dashed @red;
+      padding: 0.25em 1em;
     }
 
     & .nut {

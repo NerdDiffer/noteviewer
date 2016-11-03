@@ -62,12 +62,18 @@ class Fretboard extends Component {
 
   handleFretSpanChange(e) {
     const span = parseInt(e.target.value);
-    this.props.changeFretSpan(span)
+
+    if (!isNaN(span)) {
+      this.props.changeFretSpan(span)
+    }
   }
 
   handlePositionChange(e) {
     const position = parseInt(e.target.value);
-    this.props.changePosition(position)
+
+    if (!isNaN(position)) {
+      this.props.changePosition(position)
+    }
   }
 
   renderStrings(n) {

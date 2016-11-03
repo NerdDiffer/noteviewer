@@ -9,6 +9,7 @@ class App extends Component {
       <Container
         className="app"
         textAlign="center"
+        text
       >
         <Segment>
           <h1>Guitar chord diagrams</h1>
